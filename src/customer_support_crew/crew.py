@@ -38,5 +38,5 @@ class CustomerSupportCrew:
             agents=[self.support_agent()],
             tasks=[self.handle_customer_query_task()],
             process=Process.sequential,
-            verbose=2 # You can set it to 1 or 2 for different levels of verbosity
+            verbose=True
         )
