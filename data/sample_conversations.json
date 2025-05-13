@@ -1,26 +1,154 @@
 [
-    {
-      "id": "conv_001",
-      "tags": ["billing", "refund", "credit card"],
-      "summary": "User inquired about a refund for order #12345. Refund processed successfully after verifying purchase.",
-      "log": "Agent: Hello! How can I help you today?\nUser: Hi, I'd like to request a refund for order #12345.\nAgent: Certainly, let me check that for you. (Verifies order) ... Okay, I've processed your refund. It should reflect in your account in 3-5 business days."
-    },
-    {
-      "id": "conv_002",
-      "tags": ["technical issue", "login problem", "password reset"],
-      "summary": "User was unable to log in. Guided user through password reset procedure, which resolved the issue.",
-      "log": "User: I can't log into my account.\nAgent: I'm sorry to hear that. Have you tried resetting your password?\nUser: No, how do I do that?\nAgent: You can click the 'Forgot Password' link on the login page. (Guides user)... \nUser: It worked! Thanks."
-    },
-    {
-      "id": "conv_003",
-      "tags": ["product inquiry", "feature question", "shipping"],
-      "summary": "User asked about the availability of a specific feature in Product X and shipping times. Provided feature details and estimated shipping.",
-      "log": "User: Does Product X support feature Y?\nAgent: Yes, Product X does support feature Y. It allows you to...\nUser: Great! And how long does shipping usually take?\nAgent: Standard shipping is 5-7 business days."
-    },
-    {
-      "id": "conv_004",
-      "tags": ["billing", "subscription", "cancellation"],
-      "summary": "User wanted to cancel their monthly subscription. Processed cancellation and confirmed no further charges.",
-      "log": "User: I want to cancel my subscription.\nAgent: I can help with that. May I know the reason for cancellation? (Processes cancellation) ... Your subscription is now cancelled, and you won't be billed further."
-    }
-  ]
+  {
+    "id": "conv_en_001",
+    "type": "conversation_example",
+    "language": "en",
+    "tags": ["billing", "refund", "credit card", "order inquiry"],
+    "summary": "User inquired about a refund for order #12345. Refund processed successfully after verifying purchase.",
+    "log": "Agent: Hello! How can I help you today?\nUser: Hi, I'd like to request a refund for order #12345.\nAgent: Certainly, let me check that for you. (Verifies order) ... Okay, I've processed your refund. It should reflect in your account in 3-5 business days."
+  },
+  {
+    "id": "conv_en_002",
+    "type": "conversation_example",
+    "language": "en",
+    "tags": ["technical issue", "login problem", "password reset", "account access"],
+    "summary": "User was unable to log in. Guided user through password reset procedure, which resolved the issue.",
+    "log": "User: I can't log into my account.\nAgent: I'm sorry to hear that. Have you tried resetting your password?\nUser: No, how do I do that?\nAgent: You can click the 'Forgot Password' link on the login page. (Guides user)... \nUser: It worked! Thanks."
+  },
+  {
+    "id": "conv_en_003",
+    "type": "conversation_example",
+    "language": "en",
+    "tags": ["product inquiry", "feature question", "shipping information"],
+    "summary": "User asked about the availability of a specific feature in Product X and shipping times. Provided feature details and estimated shipping.",
+    "log": "User: Does Product X support feature Y?\nAgent: Yes, Product X does support feature Y. It allows you to...\nUser: Great! And how long does shipping usually take?\nAgent: Standard shipping is 5-7 business days."
+  },
+  {
+    "id": "conv_en_004",
+    "type": "conversation_example",
+    "language": "en",
+    "tags": ["billing", "subscription management", "cancellation request"],
+    "summary": "User wanted to cancel their monthly subscription. Processed cancellation and confirmed no further charges.",
+    "log": "User: I want to cancel my subscription.\nAgent: I can help with that. May I know the reason for cancellation? (Processes cancellation) ... Your subscription is now cancelled, and you won't be billed further."
+  },
+  {
+    "id": "guide_en_001",
+    "type": "guideline",
+    "language": "en",
+    "title": "Use polite and ethical language",
+    "tags": ["politeness", "ethics", "language", "customer communication", "tone of voice"],
+    "summary": "Use polite and ethical language when communicating with all customers, regardless of their demeanor. Contemporary language is acceptable if not offensive.",
+    "description": "Customers have varied personalities; some are polite, gentle, and ethical when contacting CS, while others might be rude and blunt when sending complaints. Regardless of the customer's character, CS must always use polite and ethical language. It's okay to use modern language to sound friendly, as long as it's not offensive.",
+    "examples": [
+      "Welcome to N Olshop. How can we assist you?",
+      "Dear customer, your message has been processed. We will contact you shortly with an update on the follow-up.",
+      "Good morning, Bella. Thank you for your confirmation. Your order has been processed and will be shipped tomorrow according to Jets expedition's operational hours."
+    ],
+    "log": "Guideline: Use polite and ethical language. Description: Customers have varied personalities... Examples: 'Welcome to N Olshop...'"
+  },
+  {
+    "id": "guide_en_002",
+    "type": "guideline",
+    "language": "en",
+    "title": "Show empathy",
+    "tags": ["empathy", "customer understanding", "complaint handling", "CS attitude"],
+    "summary": "Show empathy towards customer issues, no matter how small, to make them feel calm and valued.",
+    "description": "Every customer has their own problems while using a product, leading them to contact admin or customer service hoping for a resolution. No matter how trivial the complaint, CS must show empathy. Responding empathetically makes customers feel calmer and more attended to.",
+    "examples": [
+      "Thank you for contacting us. We apologize for this incident; could you please tell us more about the chronology?",
+      "Thank you very much for your review. We understand your disappointment with the incorrect order. As an apology, please send your full address and previous order details. We will immediately send the correct product.",
+      "Hello. Regarding your complaint, we have forwarded it to the relevant team. We sincerely apologize and promise this will not happen again."
+    ],
+    "log": "Guideline: Show empathy. Description: Every customer has their own problems... Examples: 'Thank you for contacting us...'"
+  },
+  {
+    "id": "guide_en_003",
+    "type": "guideline",
+    "language": "en",
+    "title": "Be honest about the product",
+    "tags": ["product honesty", "product information", "customer needs", "transparency"],
+    "summary": "Provide honest product information to understand customer needs, without overstating shortcomings.",
+    "description": "The purpose of chatting with customers is not only to solve their problems but also to understand their needs. Therefore, it's crucial to be honest about the products sold. Being honest is important, but it doesn't mean excessively detailing its flaws.",
+    "examples": [
+      "Product A is currently unavailable, ma'am/sir. But you can choose Product B as an alternative at a lower price.",
+      "If you have sensitive skin, Product C is likely suitable as it contains no fragrance or alcohol.",
+      "Hello! If used for outdoor activities, this shoe's material isn't ideal as it might peel quickly. However, we have a recommendation for high-quality genuine cowhide leather shoes from our store for outdoor activities. We'll send you the product link shortly!"
+    ],
+    "log": "Guideline: Be honest about the product. Description: The purpose of chatting is not only to solve problems... Examples: 'Product A is currently unavailable...'"
+  },
+  {
+    "id": "guide_en_004",
+    "type": "guideline",
+    "language": "en",
+    "title": "Highlight product advantages",
+    "tags": ["product advantages", "product knowledge", "persuading customers", "sales"],
+    "summary": "Explain product advantages to influence customers to buy, using soft or hard selling techniques without being forceful.",
+    "description": "Besides honestly explaining product details, don't forget to highlight product advantages. This aims to influence customers' minds so they're willing to buy the recommended product. Highlighting advantages can be done via soft selling or hard selling, but it's best not to be too pushy to maintain good chat performance.",
+    "examples": [
+      "Regarding the partnership package you inquired about, it includes a booth, drink-making machine, and cashier equipment. But if you add just 2 million more, you'll get complete cooking equipment. Are you interested?",
+      "Hello! BeautyB is currently launching a new serum for oily skin! We assure you it's made from organic ingredients, without alcohol or fragrance. If you have questions about the serum, feel free to contact us!",
+      "Hi. No need to worry about material durability because the wallets in our store are guaranteed to be made from genuine sheepskin. You can check after the package arrives, and if the quality is poor or the item is proven fake, we offer a 100% money-back guarantee."
+    ],
+    "log": "Guideline: Highlight product advantages. Description: Besides being honest, highlight advantages... Examples: 'Regarding the partnership package...'"
+  },
+  {
+    "id": "guide_en_005",
+    "type": "guideline",
+    "language": "en",
+    "title": "Provide the best advice or solutions to customers",
+    "tags": ["customer solutions", "problem-solving", "product advice", "responsibility"],
+    "summary": "Address customer complaints by offering the best solutions and avoid intimidating language or shirking responsibility.",
+    "description": "When facing issues with purchased products, customers will immediately contact CS to voice their complaints. As CS, you need to address and provide the best solutions to resolve these problems. When replying to complaints, avoid using intimidating language or acting as if evading responsibility.",
+    "examples": [
+      "Regarding the issue of lost items during transit, we have processed it. Please wait for the results within 1x24 hours.",
+      "If there's a reaction like redness and itching during product use, it might be because it's not suitable for your skin type. Please stop using it immediately. You can consult with us so we can recommend a suitable product.",
+      "Thank you for contacting Toko321. For product shipments outside Java, it's advisable to add wooden packing and extra bubble wrap to prevent damage during transit."
+    ],
+    "log": "Guideline: Provide the best advice or solutions. Description: When customers have issues, provide solutions... Examples: 'Regarding lost items...'"
+  },
+  {
+    "id": "guide_en_006",
+    "type": "guideline",
+    "language": "en",
+    "title": "Avoid showing ignorance",
+    "tags": ["professionalism", "product knowledge", "information handling", "CS knowledge"],
+    "summary": "If you don't know the answer, don't say \"I don't know.\" Ask for time to find information or request more details from the customer.",
+    "description": "Customer service doesn't always know everything. Although it's a shortcoming, it's best not to show it to avoid negatively impacting sales. There are ways to handle your lack of knowledge about products or customer issues. It's crucial to avoid saying \"I don't know\"!",
+    "examples": [
+      "Thank you for your message. We will look into it first to confirm.",
+      "Sorry, we haven't found any information regarding that issue. Could you please explain in more detail so we can process the data?",
+      "Sorry, we couldn't find the data related to that issue yet. We will contact you as soon as we get the information. So, please leave your active email address and phone number. Thank you."
+    ],
+    "log": "Guideline: Avoid showing ignorance. Description: CS doesn't always know everything... Examples: 'We will look into it...'"
+  },
+  {
+    "id": "guide_en_007",
+    "type": "guideline",
+    "language": "en",
+    "title": "Say sorry and thank you",
+    "tags": ["apologies", "expressing gratitude", "communication ethics", "customer relations"],
+    "summary": "Always apologize for inconveniences and thank customers for their interaction or feedback as part of communication ethics.",
+    "description": "The words 'sorry' and 'thank you' are very important when replying to customers. Both have their respective functions and are part of the ethics of communicating with customers.",
+    "examples": [
+      "Thank you for contacting us via WhatsApp. If you have any issues with the product, please consult with us.",
+      "Thank you for leaving a review in our store. We sincerely apologize for any inconvenience. We will strive to prevent it from happening again.",
+      "We apologize for the discomfort. As a gesture of responsibility, please provide your bank account number to compensate for the loss you experienced."
+    ],
+    "log": "Guideline: Say sorry and thank you. Description: The words sorry and thank you are important... Examples: 'Thank you for contacting us...'"
+  },
+  {
+    "id": "guide_en_008",
+    "type": "guideline",
+    "language": "en",
+    "title": "How to chat to follow up with old customers",
+    "tags": ["follow-up", "customer retention", "customer engagement", "promotions"],
+    "summary": "Follow up with old customers to re-engage them and encourage repeat purchases, possibly by offering special discounts or vouchers.",
+    "description": "The next way to chat with customers is to follow up with old customers or to re-inquire if a previous chat went unanswered. This follow-up is important because it aims to re-ignite the customer's desire to shop at your place again. Not all customers may be interested in replying. However, this method of following up with old customers can be tried to retain them.",
+    "examples": [
+      "Hello, Indria. Long time no see, right? As we are about to celebrate Independence Day, especially for you, Indria, we are offering a 17% discount with no minimum purchase, valid from August 17-18, 2022. Claim it now to make your shopping more economical!",
+      "Good afternoon, Mr. Albert. What are your thoughts on our product? We hope you are satisfied with it. If you encounter any issues, please do not hesitate to contact us.",
+      "Thank you for being a loyal customer at OlshopY. As an expression of our gratitude, we are pleased to offer you a special voucher for your next purchase. Please claim it via this link."
+    ],
+    "log": "Guideline: Follow up with old customers. Description: How to chat to follow up... Examples: 'Hello, Indria...'"
+  }
+]
