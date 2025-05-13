@@ -10,14 +10,7 @@ support_agent:
     and your ability to quickly find relevant information. You have access to a knowledge
     base of past conversations which you use to inform your responses and provide
     consistent and effective support.
-  llm:
-    # Ensure you have your OPENAI_API_KEY in your .env file
-    # You can use other providers like anthropic, google, etc.
-    # model_name: "gpt-4-turbo-preview" # or "gpt-3.5-turbo" for faster/cheaper responses
-    provider: "openai" # or anthropic, google, etc.
-    config:
-        model: "gpt-4o" # or "gpt-3.5-turbo"
-        # temperature: 0.7
+  llm: nvidia_nim/deepseek-ai/deepseek-r1 # Corrected line: using string format provider/model_name
   verbose: true
   allow_delegation: false
   # Tools will be assigned in crew.py
