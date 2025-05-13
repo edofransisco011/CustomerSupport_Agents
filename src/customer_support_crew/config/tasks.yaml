@@ -1,17 +1,13 @@
-research_task:
+handle_customer_query:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    A customer has reached out with the following query: '{customer_query}'.
+    1. Understand the customer's needs.
+    2. If necessary, use the 'Conversation Query Tool' to search for past similar issues, solutions, or relevant information.
+       When using the tool, formulate a concise search query based on the customer's problem.
+    3. Based on your understanding and any information retrieved, formulate a helpful and empathetic response.
+    4. If you find relevant past conversations, you can mention general learnings or approaches but do not directly quote full logs unless specifically asked and relevant.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
-
-reporting_task:
-  description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
-  expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    A clear, concise, and helpful response to the customer's query.
+    If information was found using the Conversation Query Tool, briefly mention how past learnings helped,
+    e.g., "Based on similar situations, I'd suggest..." or "I found some helpful information related to your issue."
+  # agent will be assigned in crew.py
