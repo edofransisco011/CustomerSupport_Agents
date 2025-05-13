@@ -1,68 +1,37 @@
-#!/usr/bin/env python
-import sys
-import warnings
-
-from datetime import datetime
+import os
+from dotenv import load_dotenv
+load_dotenv() # Load environment variables from .env file
 
 from customer_support_crew.crew import CustomerSupportCrew
 
-warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
-
-# This main file is intended to be a way for you to run your
-# crew locally, so refrain from adding unnecessary logic into this file.
-# Replace with inputs you want to test with, it will automatically
-# interpolate any tasks and agents information
-
 def run():
     """
-    Run the crew.
+    Run the customer support crew.
     """
+    # Define a sample customer query
+    # Try queries like:
+    # "I need a refund for my order."
+    # "I can't log in to my account."
+    # "How long does shipping take for Product X?"
+    # "I need to cancel my subscription"
+    # "My payment failed, what should I do?" (This one won't have direct matches, let's see how the agent handles it)
+    customer_query_input = "I'm having trouble with my credit card payment for my subscription, it keeps getting declined. What should I do?"
+
     inputs = {
-        'topic': 'AI LLMs',
-        'current_year': str(datetime.now().year)
+        'customer_query': customer_query_input
     }
     
-    try:
-        CustomerSupportCrew().crew().kickoff(inputs=inputs)
-    except Exception as e:
-        raise Exception(f"An error occurred while running the crew: {e}")
-
-
-def train():
-    """
-    Train the crew for a given number of iterations.
-    """
-    inputs = {
-        "topic": "AI LLMs",
-        'current_year': str(datetime.now().year)
-    }
-    try:
-        CustomerSupportCrew().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
-
-    except Exception as e:
-        raise Exception(f"An error occurred while training the crew: {e}")
-
-def replay():
-    """
-    Replay the crew execution from a specific task.
-    """
-    try:
-        CustomerSupportCrew().crew().replay(task_id=sys.argv[1])
-
-    except Exception as e:
-        raise Exception(f"An error occurred while replaying the crew: {e}")
-
-def test():
-    """
-    Test the crew execution and returns the results.
-    """
-    inputs = {
-        "topic": "AI LLMs",
-        "current_year": str(datetime.now().year)
-    }
+    # Create the crew
+    support_crew_instance = CustomerSupportCrew()
+    result = support_crew_instance.crew().kickoff(inputs=inputs)
     
-    try:
-        CustomerSupportCrew().crew().test(n_iterations=int(sys.argv[1]), eval_llm=sys.argv[2], inputs=inputs)
+    print("Customer Agent Response:")
+    print(result)
 
-    except Exception as e:
-        raise Exception(f"An error occurred while testing the crew: {e}")
+if __name__ == "__main__":
+    # Ensure OPENAI_API_KEY is set in your environment or .env file
+    if not os.getenv("NVIDIA_NIM_API_KEY"):
+        print("Error: NVIDIA_NIM_API_KEY environment variable not set.")
+        print("Please set it in your .env file or your environment.")
+    else:
+        run()
