@@ -1,64 +1,42 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from crewai.agents.agent_builder.base_agent import BaseAgent
-from typing import List
-# If you want to run a snippet of code before or after the crew starts,
-# you can use the @before_kickoff and @after_kickoff decorators
-# https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
+
+# Import the custom tool
+from .tools.conversation_query_tool import ConversationQueryTool
 
 @CrewBase
-class CustomerSupportCrew():
-    """CustomerSupportCrew crew"""
+class CustomerSupportCrew:
+    """CustomerSupportCrew"""
+    agents_config = 'config/agents.yaml'
+    tasks_config = 'config/tasks.yaml'
 
-    agents: List[BaseAgent]
-    tasks: List[Task]
+    def __init__(self):
+        # Initialize the tool.
+        # The path to the dataset is relative to the project root.
+        # If crew.py is in src/customer_support_crew/, data/ is ../../data/
+        self.conversation_query_tool = ConversationQueryTool(dataset_path="data/sample_conversations.json")
 
-    # Learn more about YAML configuration files here:
-    # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
-    # Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
-    
-    # If you would like to add tools to your agents, you can learn more about it here:
-    # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
-    def researcher(self) -> Agent:
+    def support_agent(self) -> Agent:
         return Agent(
-            config=self.agents_config['researcher'], # type: ignore[index]
+            config=self.agents_config['support_agent'],
+            tools=[self.conversation_query_tool], # Assign the tool to the agent
             verbose=True
         )
 
-    @agent
-    def reporting_analyst(self) -> Agent:
-        return Agent(
-            config=self.agents_config['reporting_analyst'], # type: ignore[index]
-            verbose=True
-        )
-
-    # To learn more about structured task outputs,
-    # task dependencies, and task callbacks, check out the documentation:
-    # https://docs.crewai.com/concepts/tasks#overview-of-a-task
     @task
-    def research_task(self) -> Task:
+    def handle_customer_query_task(self) -> Task:
         return Task(
-            config=self.tasks_config['research_task'], # type: ignore[index]
-        )
-
-    @task
-    def reporting_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['reporting_task'], # type: ignore[index]
-            output_file='report.md'
+            config=self.tasks_config['handle_customer_query'],
+            agent=self.support_agent() # Assign the agent to the task
         )
 
     @crew
     def crew(self) -> Crew:
-        """Creates the CustomerSupportCrew crew"""
-        # To learn how to add knowledge sources to your crew, check out the documentation:
-        # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
-
+        """Creates the Customer Support crew"""
         return Crew(
-            agents=self.agents, # Automatically created by the @agent decorator
-            tasks=self.tasks, # Automatically created by the @task decorator
+            agents=[self.support_agent()],
+            tasks=[self.handle_customer_query_task()],
             process=Process.sequential,
-            verbose=True,
-            # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
+            verbose=2 # You can set it to 1 or 2 for different levels of verbosity
         )
