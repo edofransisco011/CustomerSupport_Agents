@@ -13,4 +13,10 @@ support_agent:
   llm: nvidia_nim/deepseek-ai/deepseek-r1 # Corrected line: using string format provider/model_name
   verbose: true
   allow_delegation: false
+  temperature: 0.5  # Lower temperature for more focused responses
+  # Settings added for better control over agent behavior
+  max_iterations: 3  # Limit response iterations for efficiency
+  max_rpm: 10        # Rate limit for API calls (requests per minute)
+  allow_feedback: true
+  human_input_mode: NEVER  # Don't ask for human input during runs
   # Tools will be assigned in crew.py
